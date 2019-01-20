@@ -11,6 +11,8 @@ import torch.autograd as autograd
 from torch.autograd import Variable
 
 # creating the architecture  of the neural network
+
+
 class Network(nn.Module):
 
     def __init__(self, input_size, nb_action):
@@ -23,9 +25,11 @@ class Network(nn.Module):
     def forward(self, state):
         x = F.relu(self.fc1(state))
         q_values = self.fc2(x)
-        return q_values 
+        return q_values
 
-# experience replay 
+# experience replay
+
+
 class ReplayMemory(object):
 
     def __init__(self, capacity):
@@ -39,5 +43,5 @@ class ReplayMemory(object):
 
     def sample(self, batch_size):
         # if list == ((1,2,3),(4,5,6)) then zip(*list) = ((1,4),( 2,3),(5,6))
-        samples = zip(*random.sample(self.memory, batch_size)) 
+        samples = zip(*random.sample(self.memory, batch_size))
         return map(lambda x: Variable(torch.cat(x, 0)), samples)
