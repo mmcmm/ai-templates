@@ -92,3 +92,6 @@ class Dgn():
         if len(self.reward_winow) > 1000:
             del self.reward_winow[0]
         return action
+
+    def score(self):
+        return sum(self.reward_winow) / (len(self.reward_winow)*1.) 
